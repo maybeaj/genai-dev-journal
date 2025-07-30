@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import router from './routes/test'
+import authRouter from './routes/auth.route'
+import userRouter from './routes/user.route'
 dotenv.config();
 
 const app = express();
@@ -13,7 +14,9 @@ app.use(cors({ origin: '*' }))
 })) */
 app.use(express.json());
 
-app.use("/",router);
+app.use("/auth", authRouter);
+app.use("/user", userRouter);
+
 
 app.get("/", (_, res) => {
 	res.send("GenAI 개발일지 백엔드 작동중!");
