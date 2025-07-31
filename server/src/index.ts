@@ -4,7 +4,11 @@ import dotenv from "dotenv";
 import authRouter from "./routes/auth.route";
 import userRouter from "./routes/user.route";
 
-dotenv.config({ path: process.env.NODE_ENV === "production" ? ".env.production" : ".env" });
+// 기본값 설정 (NODE_ENV가 undefined일 수도 있음)
+const mode = process.env.NODE_ENV ?? "development";
+const envPath = mode === "production" ? ".env.production" : ".env";
+
+dotenv.config({ path: envPath });
 
 const app = express();
 
