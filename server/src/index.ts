@@ -8,18 +8,11 @@ dotenv.config({ path: process.env.NODE_ENV === "production" ? ".env.production" 
 
 const app = express();
 
-// CORS 설정 (여러 origin 허용)
-const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
+const allowedOrigin = process.env.ALLOWED_ORIGIN;
 
 app.use(
 	cors({
-		origin: (origin, callback) => {
-			if (!origin || allowedOrigins.includes(origin)) {
-				callback(null, true);
-			} else {
-				callback(new Error("Not allowed by CORS"));
-			}
-		},
+		origin: allowedOrigin,
 		credentials: true,
 	})
 );
