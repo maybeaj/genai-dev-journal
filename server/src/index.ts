@@ -7,11 +7,10 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({ origin: '*' }))
-/* app.use(cors({
-  	origin: 'https://genai-dev-journal.vercel.app/', // 실제 Vercel 주소
+app.use(cors({
+  	origin: 'http://localhost:5173', // 또는 배포한 Vercel 주소 https://genai-dev-journal.vercel.app/
 	credentials: true,
-})) */
+}));
 app.use(express.json());
 
 app.use("/auth", authRouter);
