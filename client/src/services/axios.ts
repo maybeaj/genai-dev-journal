@@ -1,12 +1,16 @@
 import axios from "axios";
 
 const api = axios.create({
-	baseURL: import.meta.env.VITE_API_URL, 
+	baseURL:
+		import.meta.env.MODE === "production"
+			? "https://api.devainote.info"
+			: "http://localhost:4000",
 	withCredentials: true,
 	headers: {
 		"Content-Type": "application/json",
 	},
 });
+
 
 // ✅ 요청 시 토큰 자동 첨부
 api.interceptors.request.use((config) => {
