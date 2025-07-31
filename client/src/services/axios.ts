@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-	baseURL: import.meta.env.VITE_API_URL,
-	withCredentials: true, // ✅ 서버에 쿠키나 인증정보 전송
+	baseURL: import.meta.env.VITE_API_URL, 
+	withCredentials: true,
 	headers: {
 		"Content-Type": "application/json",
 	},
