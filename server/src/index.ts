@@ -4,17 +4,26 @@ import dotenv from "dotenv";
 import authRouter from "./routes/auth.route";
 import userRouter from "./routes/user.route";
 
-dotenv.config();
+dotenv.config({ path: process.env.NODE_ENV === "production" ? ".env.production" : ".env" });
 
 const app = express();
 
-// 환경별 CORS 설정
+// CORS 설정 (여러 origin 허용)
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
+
 app.use(
 	cors({
-		origin: process.env.ALLOWED_ORIGIN,
+		origin: (origin, callback) => {
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true);
+			} else {
+				callback(new Error("Not allowed by CORS"));
+			}
+		},
 		credentials: true,
 	})
 );
+
 app.use(express.json());
 
 app.use("/auth", authRouter);
