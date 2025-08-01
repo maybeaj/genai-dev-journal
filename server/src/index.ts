@@ -1,10 +1,8 @@
-// src/index.ts
 import dotenv from "dotenv";
 
-// NODE_ENV 값에 따라 자동으로 .env 또는 .env.production 적용됨
-dotenv.config();
-
-console.log("✅ NODE_ENV:", process.env.NODE_ENV);
+const mode = process.env.NODE_ENV || "development";
+const envPath = mode === "production" ? ".env.production" : ".env";
+dotenv.config({ path: envPath });
 
 import express from "express";
 import cors from "cors";
