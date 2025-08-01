@@ -21,6 +21,12 @@ app.use(
 	})
 );
 
+//Preflight 요청 허용 (꼭 cors 밑에 있어야 함)
+app.options("*", cors({
+	origin: allowedOrigin,
+	credentials: true,
+}));
+
 app.use(express.json());
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
