@@ -1,11 +1,9 @@
 import dotenv from "dotenv";
 
-const envPath = process.env.NODE_ENV === "production" ? ".env.production" : ".env";
-console.log(`🌱 Loading env from: ${envPath}`);
-dotenv.config({ path: envPath });
+const envFile = process.env.NODE_ENV === "production" ? ".env.production" : ".env";
+dotenv.config({ path: envFile });
 
-
-
+console.log(`🌱 Loaded environment from: ${envFile}`);
 
 import express from "express";
 import cors from "cors";
