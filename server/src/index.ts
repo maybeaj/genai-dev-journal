@@ -1,9 +1,12 @@
 import dotenv from "dotenv";
 
-const envFile = process.env.NODE_ENV === "production" ? ".env.production" : ".env";
-dotenv.config({ path: envFile });
+const mode = process.env.NODE_ENV || "development";
+const envPath = mode === "production" ? ".env.production" : ".env";
 
-console.log(`🌱 Loaded environment from: ${envFile}`);
+console.log(`💡 Current NODE_ENV: ${process.env.NODE_ENV}`); // 이 라인 추가!
+console.log(`🌱 Loading env from: ${envPath}`);
+
+dotenv.config({ path: envPath });
 
 import express from "express";
 import cors from "cors";
