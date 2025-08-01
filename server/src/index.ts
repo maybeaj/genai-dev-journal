@@ -1,18 +1,14 @@
-import dotenv from "dotenv";
-
-console.log(`💡 Current NODE_ENV (before dotenv config): "${process.env.NODE_ENV}"`);
-
-const mode = process.env.NODE_ENV || "development";
-const envPath = mode === "production" ? ".env.production" : ".env";
-
-console.log(`🌱 Loading env from path: "${envPath}"`); // 경로를 따옴표로 감싸서 정확히 확인
-
-dotenv.config({ path: envPath });
+import dotenvFlow from "dotenv-flow";
+dotenvFlow.config(); // NODE_ENV 기준 자동 로딩
 
 import express from "express";
 import cors from "cors";
 import authRouter from "./routes/auth.route";
 import userRouter from "./routes/user.route";
+
+// 디버깅용 로그
+console.log(`✅ Loaded env for NODE_ENV="${process.env.NODE_ENV}"`);
+console.log(`🌱 ALLOWED_ORIGIN="${process.env.ALLOWED_ORIGIN}"`);
 
 const app = express();
 
