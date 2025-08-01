@@ -2,20 +2,14 @@ module.exports = {
 	apps: [
 		{
 			name: "genai-backend",
-			script: "dist/index.js", // <-- 빌드된 파일 경로를 정확히 명시 (예: dist/index.js 또는 build/index.js)
-			instances: 1, // 일단 테스트용으로 1개 인스턴스
-			exec_mode: "fork", // 일단 cluster 대신 fork 모드로 (심플하게)
+			script: "dist/index.js", // ✅ 빌드된 JS 파일 경로
+			instances: 1, // ✅ fork 모드로 1개 인스턴스
+			exec_mode: "fork", // ✅ 테스트 용도로 적절
 			env_production: {
 				NODE_ENV: "production",
 				PORT: 4000,
-				// 여기에 다른 production 환경 변수들을 추가할 수 있습니다.
-				// 예를 들어, DB_HOST_PROD, API_KEY_PROD 등
+				// ✅ 여기에 다른 환경 변수도 추가 가능 (DB_HOST 등)
 			},
-			// 개발 환경이 필요하다면 아래 env 블록도 추가
-			// env: {
-			//   NODE_ENV: "development",
-			//   PORT: 4000
-			// }
 		},
 	],
 };
