@@ -1,10 +1,11 @@
 import dotenv from "dotenv";
 
+console.log(`💡 Current NODE_ENV (before dotenv config): "${process.env.NODE_ENV}"`);
+
 const mode = process.env.NODE_ENV || "development";
 const envPath = mode === "production" ? ".env.production" : ".env";
 
-console.log(`💡 Current NODE_ENV: ${process.env.NODE_ENV}`); // 이 라인 추가!
-console.log(`🌱 Loading env from: ${envPath}`);
+console.log(`🌱 Loading env from path: "${envPath}"`); // 경로를 따옴표로 감싸서 정확히 확인
 
 dotenv.config({ path: envPath });
 
