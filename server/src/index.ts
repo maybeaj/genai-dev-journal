@@ -6,10 +6,6 @@ import cors from "cors";
 import authRouter from "./routes/auth.route";
 import userRouter from "./routes/user.route";
 
-// 디버깅용 로그
-console.log(`✅ Loaded env for NODE_ENV="${process.env.NODE_ENV}"`);
-console.log(`🌱 ALLOWED_ORIGIN="${process.env.ALLOWED_ORIGIN}"`);
-
 const app = express();
 
 const allowedOrigin = process.env.ALLOWED_ORIGIN;
@@ -20,12 +16,6 @@ app.use(
 		credentials: true,
 	})
 );
-
-//Preflight 요청 허용 (꼭 cors 밑에 있어야 함)
-app.options("*", cors({
-	origin: allowedOrigin,
-	credentials: true,
-}));
 
 app.use(express.json());
 app.use("/auth", authRouter);
