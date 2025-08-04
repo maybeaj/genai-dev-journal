@@ -11,7 +11,7 @@ const app = express();
 // CORS 설정
 // 개발 환경에서만 cors 미들웨어 활성화
 if (process.env.NODE_ENV === "development") {
-    const allowedOrigin = process.env.ALLOWED_ORIGIN_DEV; // 개발 환경용 오리진 (예: http://localhost:3000)
+    const allowedOrigin = process.env.ALLOWED_ORIGIN; 
     console.log(`🚀 Development CORS enabled for origin: ${allowedOrigin}`);
     app.use(
         cors({
